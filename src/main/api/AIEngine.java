@@ -59,7 +59,7 @@ public class AIEngine {
                 }
             }
         }
-        return null;
+        return getBasicMove(board, player);
     }
     public boolean startingMoves(TicTacToeBoard board, int threshold){
         int count = 0;
