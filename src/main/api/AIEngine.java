@@ -14,18 +14,24 @@ public class AIEngine {
     public Move suggestMove(Player computer, Board board){
         if(board instanceof TicTacToeBoard){
             TicTacToeBoard board1 = (TicTacToeBoard)board;
-            if(startingMoves(board1, 4)){
-                return getBasicMove(board1, computer);
+            Move suggestion;
+            if(startingMoves(board1, 3)){
+                suggestion = getBasicMove(board1, computer);
             }else {
-                return getSmartMove(board1, computer);
+                suggestion = getSmartMove(board1, computer);
             }
+            if(suggestion != null){
+                return suggestion;
+            }
+            throw new IllegalStateException();
         }
-        throw new IllegalStateException("Board given does not supported");
+        throw new IllegalArgumentException("Board given does not supported");
     }
     public Move getBasicMove(TicTacToeBoard board, Player player){
         for(int i=0;i<3;i++){
             for(int j=0;j<3;j++){
                 if(board.getSymbol(i, j)==null){
+                    System.out.println("Basic Move");
                     return new Move(new Cell(i, j), player);
                 }
             }
@@ -39,8 +45,10 @@ public class AIEngine {
             for(int j=0;j<3;j++){
                 if(board.getSymbol(i, j)==null){
                     Move move = new Move(new Cell(i, j), player);
-                    board.move(move);
-                    if(ruleEngine.gameState(board).isOver()){
+                    TicTacToeBoard copyBoard = board.copy();
+                    copyBoard.move(move);
+                    if(ruleEngine.gameState(copyBoard).isOver()){
+                        System.out.println("Victorious move");
                         return move;
                     }
                 }
@@ -52,9 +60,12 @@ public class AIEngine {
             for(int j=0;j<3;j++){
                 if(board.getSymbol(i, j)==null){
                     Move move = new Move(new Cell(i, j), player.flip());
-                    board.move(move);
-                    if(ruleEngine.gameState(board).isOver()){
-                        return move;
+                    TicTacToeBoard copyBoard = board.copy();
+                    copyBoard.move(move);
+                    
+                    if(ruleEngine.gameState(copyBoard).isOver()){
+                        System.out.println("Defensive move");
+                        return new Move(new Cell(i, j), player);
                     }
                 }
             }
