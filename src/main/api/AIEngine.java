@@ -51,7 +51,7 @@ public class AIEngine {
         for(int i=0;i<3;i++){
             for(int j=0;j<3;j++){
                 if(board.getSymbol(i, j)==null){
-                    Move move = new Move(new Cell(i, j), new Player(player.symbol().equals("X")?"O":"X"));
+                    Move move = new Move(new Cell(i, j), player.flip());
                     board.move(move);
                     if(ruleEngine.gameState(board).isOver()){
                         return move;

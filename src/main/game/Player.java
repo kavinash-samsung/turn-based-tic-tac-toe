@@ -8,4 +8,11 @@ public class Player {
     public String symbol(){
         return this.playerSymbol;
     }
+    public Player flip(){
+        if(this.playerSymbol.equals("X")){
+            return new Player("O");
+        }else{
+            return new Player("X");
+        }
+    }
 }
