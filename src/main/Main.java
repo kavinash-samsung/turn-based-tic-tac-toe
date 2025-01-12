@@ -25,7 +25,7 @@ public class Main {
             System.out.println("Make your move");
             int row = scanner.nextInt();
             int col = scanner.nextInt();
-            Move oppMove = new Move(new Cell(row, col));
+            Move oppMove = new Move(new Cell(row, col), opponent);
             gameEngine.move(board, opponent, oppMove);
             GameState gameState = ruleEngine.gameState(board);
             if(gameState.isOver()){

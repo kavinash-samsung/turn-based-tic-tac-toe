@@ -11,12 +11,12 @@ public class TicTacToeBoard extends Board{
     public TicTacToeBoard(){
         cells = new String[3][3];
     }
-    public void setCell(Cell cell, String symbol){
+    private void setCell(Cell cell, String symbol){
         cells[cell.getRow()][cell.getCol()] = symbol;
     }
 
 
-    public String getCell(int x, int y){
+    public String getSymbol(int x, int y){
         return cells[x][y];
     }
     public void print(){
@@ -27,7 +27,7 @@ public class TicTacToeBoard extends Board{
 
     @Override
     public void move(Move move){
-        
+        this.setCell(move.getCell(), move.getPlayer().symbol());
     }
 
     @Override

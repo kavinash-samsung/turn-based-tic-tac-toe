@@ -14,10 +14,10 @@ public class RuleEngine {
             board1.print();
             try{
                 for(int i=0;i<3;i++){
-                    firstCharacter = board1.getCell(i,0);
+                    firstCharacter = board1.getSymbol(i,0);
                     rowComplete = firstCharacter != null;
                     for(int j=0;j<3;j++){
-                        if(firstCharacter != null && (board1.getCell(i, j) == null || !board1.getCell(i,j).equals(firstCharacter))){
+                        if(firstCharacter != null && (board1.getSymbol(i, j) == null || !board1.getSymbol(i,j).equals(firstCharacter))){
                             rowComplete = false;
                             break;
                         }
@@ -38,10 +38,10 @@ public class RuleEngine {
 
             boolean colComplete = false;
             for(int i=0;i<3;i++){
-                firstCharacter = board1.getCell(0,i);
+                firstCharacter = board1.getSymbol(0,i);
                 colComplete = firstCharacter != null;;
                 for(int j=0;j<3;j++){
-                    if(firstCharacter != null && (board1.getCell(j, i)== null || !board1.getCell(j,i).equals(firstCharacter))){
+                    if(firstCharacter != null && (board1.getSymbol(j, i)== null || !board1.getSymbol(j,i).equals(firstCharacter))){
                         colComplete = false;
                         break;
                     }
@@ -56,10 +56,10 @@ public class RuleEngine {
                 return new GameState(true, firstCharacter);
             }
             
-            firstCharacter = board1.getCell(0,0);
+            firstCharacter = board1.getSymbol(0,0);
             boolean diagComplete = firstCharacter != null;;
             for(int i=0;i<3;i++){
-                if(firstCharacter != null && (board1.getCell(i,i) == null || !board1.getCell(i,i).equals(firstCharacter))){
+                if(firstCharacter != null && (board1.getSymbol(i,i) == null || !board1.getSymbol(i,i).equals(firstCharacter))){
                     diagComplete = false;
                     break;
                 }
@@ -68,10 +68,10 @@ public class RuleEngine {
                 System.out.println("Result by diag complete");
                 return new GameState(true, firstCharacter);
             }
-            firstCharacter = board1.getCell(0,2);
+            firstCharacter = board1.getSymbol(0,2);
             boolean revDiagComplete = firstCharacter != null;;
             for(int i=0;i<3;i++){
-                if(firstCharacter != null && (board1.getCell(i, 2-i) == null || !board1.getCell(i,2-i).equals(firstCharacter))){
+                if(firstCharacter != null && (board1.getSymbol(i, 2-i) == null || !board1.getSymbol(i,2-i).equals(firstCharacter))){
                     revDiagComplete = false;
                     break;
                 }
@@ -83,7 +83,7 @@ public class RuleEngine {
             int cellRemaining = 9;
             for(int i=0;i<3;i++){
                 for(int j=0;j<3;j++){
-                    if(board1.getCell(i,j) != null){
+                    if(board1.getSymbol(i,j) != null){
                         cellRemaining--;
                     }
                 }

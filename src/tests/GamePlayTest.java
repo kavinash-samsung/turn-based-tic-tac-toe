@@ -86,7 +86,7 @@ public class GamePlayTest {
             row = moves[next][0];
             col = moves[next][1];
             next++;
-            Move oppMove = new Move(new Cell(row, col));
+            Move oppMove = new Move(new Cell(row, col), opponent);
             gameEngine.move(board, opponent, oppMove);
             GameState gameState = ruleEngine.gameState(board);
             if(gameState.isOver()){
